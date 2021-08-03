@@ -451,6 +451,46 @@ Another way to denote fenced code blocks is to use 3 or more backticks (```):
     also a fenced code block
     ```
 
+\subsection md_plantump PlantUML Code Blocks
+
+Doxygen features special support for PlantUML diagrams.  PlantUML can be 
+rendered as either code or a diagram in markdown.  To render a diagram, add 
+the plantuml language tag to the code block.
+
+    ~~~plantuml
+    @startuml
+    (*) --> "Diagram with PlantUML info string"
+    "Diagram with PlantUML info string" --> (*)
+    @enduml
+    ~~~
+
+will produce:
+
+~~~plantuml
+@startuml
+(*) --> "Diagram with language info string"
+"Diagram with language info string" --> (*)
+@enduml
+~~~
+
+while:
+
+    ~~~
+    @startuml
+    (*) --> "Diagram without language info string"
+    "Diagram without language info string" --> (*)
+    @enduml
+    ~~~
+
+will produce:
+
+~~~
+@startuml
+(*) --> "Diagram without language info string"
+"Diagram without language info string" --> (*)
+@enduml
+~~~
+
 \subsection md_header_id Header Id Attributes
 
 Standard Markdown has no support for labeling headers, which
