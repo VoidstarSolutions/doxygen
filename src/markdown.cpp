@@ -2560,7 +2560,15 @@ QCString Markdown::processQuotations(const QCString &s,int refIndent)
     {
       if (isFencedCodeBlock(data+pi,size-pi,currentIndent,lang,blockStart,blockEnd,blockOffset))
       {
-        writeFencedCodeBlock(data+pi,lang.data(),blockStart,blockEnd);
+        if ( lang == "plantuml" )
+        {
+          int cmdStart = pi+blockStart+1;
+          processSpecialCommand(data+cmdStart, cmdStart, size-cmdStart );
+        }
+        else
+        {
+          writeFencedCodeBlock(data+pi,lang.data(),blockStart,blockEnd);
+        }
         i=pi+blockOffset;
         pi=-1;
         end=i+1;
